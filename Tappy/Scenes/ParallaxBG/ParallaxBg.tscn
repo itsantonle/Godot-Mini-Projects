@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhmljuejygl7h"]
+
+[ext_resource type="Texture2D" uid="uid://5rfluyq7sje5" path="res://assets/background/clouds_1.png" id="1_76b1w"]
+[ext_resource type="Texture2D" uid="uid://df4nc7v8mw4nh" path="res://assets/background/rocks_2.png" id="1_cnwt5"]
+[ext_resource type="Texture2D" uid="uid://cjjx3oc0c4j0k" path="res://assets/background/rocks_1.png" id="1_eq83l"]
+[ext_resource type="Texture2D" uid="uid://4vwtfbpxn35a" path="res://assets/background/sky.png" id="1_peihs"]
+[ext_resource type="Texture2D" uid="uid://drn4dtmd7ao26" path="res://assets/background/clouds_2.png" id="2_peihs"]
+[ext_resource type="Texture2D" uid="uid://ci8eds4pn7r1r" path="res://assets/background/clouds_3.png" id="3_padew"]
+[ext_resource type="Texture2D" uid="uid://chl0msufqugxy" path="res://assets/background/clouds_4.png" id="4_snkyi"]
+
+[node name="Parallax BG" type="Node2D"]
+scale = Vector2(0.79, 0.79)
+
+[node name="Sky" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+texture = ExtResource("1_peihs")
+centered = false
+
+[node name="Cloud1" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-100, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cloud1"]
+texture = ExtResource("1_76b1w")
+centered = false
+
+[node name="Rocks Light" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-80, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Rocks Light"]
+texture = ExtResource("1_eq83l")
+centered = false
+
+[node name="Cloud2" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-130, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cloud2"]
+texture = ExtResource("2_peihs")
+centered = false
+
+[node name="Rcks Foreground" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-120, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Rcks Foreground"]
+texture = ExtResource("1_cnwt5")
+centered = false
+
+[node name="Cloud4" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cloud4"]
+texture = ExtResource("4_snkyi")
+centered = false
+
+[node name="Cloud3" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cloud3"]
+texture = ExtResource("3_padew")
+centered = false

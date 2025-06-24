@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpr43m5kbnx45"]
+
+[ext_resource type="Script" uid="uid://dujtcrrojgk1c" path="res://Scenes/FadeTransition/FadeTransition.gd" id="1_nyjxo"]
+
+[sub_resource type="Animation" id="Animation_52el4"]
+resource_name = "fade"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"switch_scene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nyjxo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssnps"]
+_data = {
+&"RESET": SubResource("Animation_nyjxo"),
+&"fade": SubResource("Animation_52el4")
+}
+
+[node name="FadeTransition" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_nyjxo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FadeAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ssnps")
+}
+autoplay = "fade"
+
+[connection signal="animation_finished" from="FadeAnimationPlayer" to="." method="_on_animation_player_animation_finished"]
