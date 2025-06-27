@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7tftt0urr68"]
+
+[ext_resource type="Texture2D" uid="uid://cn678amkv52qt" path="res://assets/env/elementStone025.png" id="1_dr6pc"]
+[ext_resource type="Texture2D" uid="uid://dlivm5gu7wftc" path="res://icon.svg" id="2_wjuvt"]
+[ext_resource type="Texture2D" uid="uid://bfoop4vtvfhf7" path="res://assets/env/elementWood015.png" id="3_1h1h0"]
+[ext_resource type="Script" uid="uid://6iedj8majf6t" path="res://Scenes/Test/TestBird.gd" id="3_kptja"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjuvt"]
+size = Vector2(25, 653)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_43i24"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1h1h0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1h1h0"]
+friction = 50.0
+rough = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kptja"]
+friction = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h1h0"]
+size = Vector2(572, 64)
+
+[node name="Playground" type="Node2D"]
+
+[node name="LEFT" type="StaticBody2D" parent="."]
+position = Vector2(3, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="LEFT"]
+position = Vector2(3.5, 318)
+scale = Vector2(0.385714, 2.97273)
+texture = ExtResource("1_dr6pc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LEFT"]
+position = Vector2(2.5, 316.5)
+shape = SubResource("RectangleShape2D_wjuvt")
+
+[node name="RIGHT" type="StaticBody2D" parent="."]
+position = Vector2(1139, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="RIGHT"]
+position = Vector2(3.5, 318)
+scale = Vector2(0.385714, 2.97273)
+texture = ExtResource("1_dr6pc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RIGHT"]
+position = Vector2(2.5, 316.5)
+shape = SubResource("RectangleShape2D_wjuvt")
+
+[node name="LOWEr" type="StaticBody2D" parent="."]
+position = Vector2(1152, 645)
+rotation = 1.5708
+scale = Vector2(1, 1.81)
+physics_material_override = SubResource("PhysicsMaterial_43i24")
+
+[node name="Sprite2D" type="Sprite2D" parent="LOWEr"]
+position = Vector2(3.5, 318)
+scale = Vector2(0.385714, 2.97273)
+texture = ExtResource("1_dr6pc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LOWEr"]
+position = Vector2(2.5, 316.5)
+shape = SubResource("RectangleShape2D_wjuvt")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(511, 451)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_wjuvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+scale = Vector2(3.285, 3.285)
+shape = SubResource("CircleShape2D_1h1h0")
+
+[node name="Test Bird" type="RigidBody2D" parent="."]
+position = Vector2(513, 352)
+input_pickable = true
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_1h1h0")
+gravity_scale = 8.0
+freeze = true
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("3_kptja")
+
+[node name="Sprite2D" type="Sprite2D" parent="Test Bird"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_wjuvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Test Bird"]
+scale = Vector2(3.285, 3.285)
+shape = SubResource("CircleShape2D_1h1h0")
+
+[node name="Label" type="Label" parent="Test Bird"]
+offset_left = -20.0
+offset_top = -94.0
+offset_right = 20.0
+offset_bottom = -45.0
+text = "0000
+0000"
+
+[node name="Timer" type="Timer" parent="Test Bird"]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+position = Vector2(-34, 11)
+mass = 7.197
+physics_material_override = SubResource("PhysicsMaterial_kptja")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D3"]
+position = Vector2(291, -48)
+scale = Vector2(2.63636, 1)
+texture = ExtResource("3_1h1h0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+position = Vector2(289, -48)
+shape = SubResource("RectangleShape2D_1h1h0")
+
+[connection signal="input_event" from="Test Bird" to="Test Bird" method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="Test Bird" to="Test Bird" method="_on_sleeping_state_changed"]
+[connection signal="timeout" from="Test Bird/Timer" to="Test Bird" method="_on_timer_timeout"]

@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://c04k1bpkjc88j"]
+
+[ext_resource type="Texture2D" uid="uid://cnv7n13bpirk" path="res://assets/env/elementWood004.png" id="1_1tkc5"]
+[ext_resource type="Script" uid="uid://uu70hmbwg10y" path="res://Scenes/Cup/Cup.gd" id="1_nfkcc"]
+[ext_resource type="Texture2D" uid="uid://bfoop4vtvfhf7" path="res://assets/env/elementWood015.png" id="2_jdgvp"]
+[ext_resource type="AudioStream" uid="uid://dek17d2qlu6f4" path="res://assets/audio/vanish.wav" id="3_jdgvp"]
+
+[sub_resource type="Animation" id="Animation_jdgvp"]
+resource_name = "vanish"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WoodSprites:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.7, 0.7), Vector2(0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_jdgvp")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_nfkcc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WoodSprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nfkcc"]
+_data = {
+&"RESET": SubResource("Animation_nfkcc"),
+&"vanish": SubResource("Animation_jdgvp")
+}
+
+[node name="Cup" type="StaticBody2D"]
+script = ExtResource("1_nfkcc")
+
+[node name="WoodSprites" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="WoodSprites"]
+position = Vector2(-72, -68)
+texture = ExtResource("1_1tkc5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="WoodSprites"]
+position = Vector2(72, -68)
+texture = ExtResource("1_1tkc5")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="WoodSprites"]
+texture = ExtResource("2_jdgvp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-106, -101, -108, 33, 107, 31, 106, -105, 37, -35, -43, -38)
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nfkcc")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjbi7ak780ocd"]
+
+[ext_resource type="Texture2D" uid="uid://bfoop4vtvfhf7" path="res://assets/env/elementWood015.png" id="1_u6v4s"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u6v4s"]
+bounce = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xa0a"]
+size = Vector2(217, 67)
+
+[node name="Rebound" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_u6v4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u6v4s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_2xa0a")
