@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfypf0sp04723"]
+
+[ext_resource type="Script" uid="uid://7ps8p3eg07f4" path="res://Scenes/GameScreen/GameScreen.gd" id="1_gtmyu"]
+[ext_resource type="Texture2D" uid="uid://caggyjppjsorl" path="res://assets/ui/blue_button00.png" id="2_ed23e"]
+[ext_resource type="LabelSettings" uid="uid://yvldnt3l3btw" path="res://Resources/title_label_30.tres" id="2_gnajj"]
+[ext_resource type="Texture2D" uid="uid://c7rftdgbg0jqp" path="res://assets/ui/grey_button00.png" id="2_lqmns"]
+[ext_resource type="Texture2D" uid="uid://8bi8y8k3vfqh" path="res://assets/ui/green_button00.png" id="4_lqmns"]
+[ext_resource type="PackedScene" uid="uid://dbju6m332n4hj" path="res://Scenes/Scorer/Scorer.tscn" id="6_gtmyu"]
+[ext_resource type="PackedScene" uid="uid://rt00tihpkqfr" path="res://Scenes/GameOverUI/GameOverUi.tscn" id="7_mxwgt"]
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gtmyu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TileGrid" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 280
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Moves"
+label_settings = ExtResource("2_gnajj")
+
+[node name="MovesLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "000"
+label_settings = ExtResource("2_gnajj")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pairs"
+label_settings = ExtResource("2_gnajj")
+
+[node name="PairsLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "10/10"
+label_settings = ExtResource("2_gnajj")
+
+[node name="Soacer" type="Control" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Exit" type="TextureButton" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_lqmns")
+texture_pressed = ExtResource("2_ed23e")
+texture_hover = ExtResource("4_lqmns")
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+label_settings = ExtResource("2_gnajj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Scorer" parent="." instance=ExtResource("6_gtmyu")]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+
+[node name="GameOverUI" parent="." instance=ExtResource("7_mxwgt")]
+layout_mode = 1
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

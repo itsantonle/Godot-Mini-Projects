@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceirpoeqi3bmo"]
+
+[ext_resource type="LabelSettings" uid="uid://c3r6vrvjuhpks" path="res://Resources/title_label_70.tres" id="1_p8rbg"]
+[ext_resource type="PackedScene" uid="uid://l7h5gbr82qq1" path="res://Scenes/LevelButton/LevelButton.tscn" id="2_qtv3y"]
+[ext_resource type="PackedScene" uid="uid://bf40p2tdbesjw" path="res://Scenes/FrontSprite/FrontSprite.tscn" id="3_cmk6n"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.309804, 0.403922, 0.494118, 0.458824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -414.0
+offset_top = -347.5
+offset_right = 414.0
+offset_bottom = 347.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Spacer4" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Memory Madness"
+label_settings = ExtResource("1_p8rbg")
+
+[node name="Spacer3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+
+[node name="LevelButtons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="LevelButton" parent="VBoxContainer/LevelButtons" instance=ExtResource("2_qtv3y")]
+layout_mode = 2
+
+[node name="LevelButton2" parent="VBoxContainer/LevelButtons" instance=ExtResource("2_qtv3y")]
+layout_mode = 2
+level_number = 2
+
+[node name="LevelButton3" parent="VBoxContainer/LevelButtons" instance=ExtResource("2_qtv3y")]
+layout_mode = 2
+level_number = 3
+
+[node name="LevelButton4" parent="VBoxContainer/LevelButtons" instance=ExtResource("2_qtv3y")]
+layout_mode = 2
+level_number = 4
+
+[node name="LevelButton5" parent="VBoxContainer/LevelButtons" instance=ExtResource("2_qtv3y")]
+layout_mode = 2
+level_number = 5
+
+[node name="LevelButton6" parent="VBoxContainer/LevelButtons" instance=ExtResource("2_qtv3y")]
+layout_mode = 2
+level_number = 6
+
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Sprites" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="FrontSprite" parent="VBoxContainer/Sprites" instance=ExtResource("3_cmk6n")]
+layout_mode = 2
+
+[node name="FrontSprite2" parent="VBoxContainer/Sprites" instance=ExtResource("3_cmk6n")]
+layout_mode = 2
+
+[node name="FrontSprite3" parent="VBoxContainer/Sprites" instance=ExtResource("3_cmk6n")]
+layout_mode = 2
+
+[node name="FrontSprite4" parent="VBoxContainer/Sprites" instance=ExtResource("3_cmk6n")]
+layout_mode = 2
+
+[node name="FrontSprite5" parent="VBoxContainer/Sprites" instance=ExtResource("3_cmk6n")]
+layout_mode = 2
+
+[node name="FrontSprite6" parent="VBoxContainer/Sprites" instance=ExtResource("3_cmk6n")]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
