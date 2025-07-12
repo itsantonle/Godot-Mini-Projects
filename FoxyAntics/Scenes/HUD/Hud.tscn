@@ -1,0 +1,144 @@
+[gd_scene load_steps=5 format=3 uid="uid://runmuk1xqyc2"]
+
+[ext_resource type="LabelSettings" uid="uid://2kgpjqs5wrg6" path="res://Resources/light_purple_48.tres" id="1_auti3"]
+[ext_resource type="Script" uid="uid://ry443vu3kj0k" path="res://Scenes/HUD/Hud.gd" id="1_hv4tk"]
+[ext_resource type="Texture2D" uid="uid://bittfqvq0138h" path="res://assets/items/pixel heart 2.png" id="2_hv4tk"]
+[ext_resource type="LabelSettings" uid="uid://xn4n3wkpq0ws" path="res://Resources/red_96.tres" id="4_acqbe"]
+
+[node name="HUD" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_hv4tk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "00000"
+label_settings = ExtResource("1_auti3")
+
+[node name="HBHearts" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="H1" type="TextureRect" parent="MarginContainer/HBHearts"]
+layout_mode = 2
+texture = ExtResource("2_hv4tk")
+
+[node name="H2" type="TextureRect" parent="MarginContainer/HBHearts"]
+layout_mode = 2
+texture = ExtResource("2_hv4tk")
+
+[node name="H3" type="TextureRect" parent="MarginContainer/HBHearts"]
+layout_mode = 2
+texture = ExtResource("2_hv4tk")
+
+[node name="H4" type="TextureRect" parent="MarginContainer/HBHearts"]
+layout_mode = 2
+texture = ExtResource("2_hv4tk")
+
+[node name="H5" type="TextureRect" parent="MarginContainer/HBHearts"]
+layout_mode = 2
+texture = ExtResource("2_hv4tk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.026987, 0.156, 0.180062, 1)
+
+[node name="VBGameOver" type="VBoxContainer" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -125.0
+offset_right = 253.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -93
+
+[node name="Label" type="Label" parent="ColorRect/VBGameOver"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over
+"
+label_settings = ExtResource("4_acqbe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/VBGameOver"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press Space"
+label_settings = ExtResource("1_auti3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBComplete" type="VBoxContainer" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -125.0
+offset_right = 253.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -93
+
+[node name="Label" type="Label" parent="ColorRect/VBComplete"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level Complete
+"
+label_settings = ExtResource("4_acqbe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/VBComplete"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press Space"
+label_settings = ExtResource("1_auti3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompleteTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="CompleteTimer" to="." method="_on_complete_timer_timeout"]
