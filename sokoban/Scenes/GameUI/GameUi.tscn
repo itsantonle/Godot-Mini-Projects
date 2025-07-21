@@ -1,0 +1,147 @@
+[gd_scene load_steps=7 format=3 uid="uid://cd6t7tfaoe5m4"]
+
+[ext_resource type="Script" uid="uid://dkm5h66p68sqr" path="res://Scenes/GameUI/GameUi.gd" id="1_81r78"]
+[ext_resource type="LabelSettings" uid="uid://6oyqxx4a5yb1" path="res://Resources/NormalLabel20.tres" id="1_diq3n"]
+[ext_resource type="Texture2D" uid="uid://bgr5bp7aeecp4" path="res://assets/panel_beigeLight.png" id="3_556m7"]
+[ext_resource type="FontFile" uid="uid://c4ejbaofx6sfw" path="res://assets/LuckiestGuy-Regular.ttf" id="4_iq8cv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwnss"]
+font = ExtResource("4_iq8cv")
+font_size = 64
+outline_size = 15
+outline_color = Color(0.158653, 0.0842313, 0.683891, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_33k4q"]
+font = ExtResource("4_iq8cv")
+font_size = 48
+font_color = Color(0.324858, 0.842295, 1, 1)
+outline_size = 15
+outline_color = Color(0.158653, 0.0842313, 0.683891, 1)
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_81r78")
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+
+[node name="VB" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VB/HB"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Level"
+label_settings = ExtResource("1_diq3n")
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="MC/VB/HB"]
+layout_mode = 2
+text = "99"
+label_settings = ExtResource("1_diq3n")
+vertical_alignment = 1
+
+[node name="HB2" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VB/HB2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Moves"
+label_settings = ExtResource("1_diq3n")
+vertical_alignment = 1
+
+[node name="MovesLabel" type="Label" parent="MC/VB/HB2"]
+layout_mode = 2
+text = "99"
+label_settings = ExtResource("1_diq3n")
+vertical_alignment = 1
+
+[node name="HB3" type="HBoxContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VB/HB3"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Best"
+label_settings = ExtResource("1_diq3n")
+vertical_alignment = 1
+
+[node name="BestLabel" type="Label" parent="MC/VB/HB3"]
+layout_mode = 2
+text = "-"
+label_settings = ExtResource("1_diq3n")
+vertical_alignment = 1
+
+[node name="GameOverNPR" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -180.0
+offset_right = 280.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_556m7")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MC" type="MarginContainer" parent="GameOverNPR"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VB" type="VBoxContainer" parent="GameOverNPR/MC"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="GameOverNPR/MC/VB"]
+layout_mode = 2
+text = "LEVEL COMPLETE!"
+label_settings = SubResource("LabelSettings_jwnss")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VB" type="VBoxContainer" parent="GameOverNPR/MC/VB"]
+layout_mode = 2
+
+[node name="MovesLabel" type="Label" parent="GameOverNPR/MC/VB/VB"]
+layout_mode = 2
+text = "You took iii moves"
+label_settings = SubResource("LabelSettings_33k4q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecordLabel" type="Label" parent="GameOverNPR/MC/VB/VB"]
+visible = false
+layout_mode = 2
+text = "A  New Record!"
+label_settings = SubResource("LabelSettings_33k4q")
+horizontal_alignment = 1
+vertical_alignment = 1
