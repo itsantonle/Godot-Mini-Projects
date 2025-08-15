@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://btiauawjsvyrs"]
+
+[ext_resource type="Script" uid="uid://dtjijtdbb7d07" path="res://Scenes/Projectile/Projectile.gd" id="1_0sawj"]
+[ext_resource type="PackedScene" uid="uid://qq0gjyel2fm6" path="res://Scenes/OutOfTime/OutOfTime.tscn" id="1_yd5xg"]
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_0sawj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="OutOfTime" parent="." instance=ExtResource("1_yd5xg")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

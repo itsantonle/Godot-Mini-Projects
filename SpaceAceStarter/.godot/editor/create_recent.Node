@@ -1,0 +1,15 @@
+CollisionShape2D
+Area2D
+Node2D
+Node3D
+AudioStreamPlayer2D
+PathFollow2D
+VisibleOnScreenNotifier2D
+AnimationPlayer
+AudioStreamPlayer
+CanvasLayer
+CanvasModulate
+Label
+MarginContainer
+ColorRect
+TextureProgressBar

@@ -1,1 +1,15 @@
-res://Scenes/Main/Main.tscn
+res://Scenes/HealthBar/HealthBar.tscn
+res://Resources/sub_font_white_30.tres
+res://Scenes/GameUI/GameUi.tscn
+res://Scenes/Shield/Shield.tscn
+res://Scenes/Player/Player.tscn
+res://Scenes/Level/Level.tscn
+res://Scenes/PowerUp/PowerUp.tscn
+res://Globals/SignalHub.gd
+res://Scenes/BulletBase/BulletEnemy.tscn
+res://Scenes/Player/Player.gd
+res://Scenes/GameUI/GameUi.gd
+res://Scenes/BulletBase/BulletBase.tscn
+res://Scenes/Level/Level.gd
+res://Scenes/EnemyBase/EnemyBase.tscn
+res://Scenes/EnemyBase/EnemyBase.gd

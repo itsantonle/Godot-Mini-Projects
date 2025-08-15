@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5fd2v1y2y6dl"]
+
+[ext_resource type="PackedScene" uid="uid://btiauawjsvyrs" path="res://Scenes/Projectile/Projectile.tscn" id="1_pi2vc"]
+[ext_resource type="Script" uid="uid://ds55p58jfvfsf" path="res://Scenes/BulletBase/BulletBase.gd" id="2_0etr7"]
+
+[node name="BulletBase" instance=ExtResource("1_pi2vc")]
+script = ExtResource("2_0etr7")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.5, 0.5)

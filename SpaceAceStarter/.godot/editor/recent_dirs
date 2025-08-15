@@ -1,1 +1,14 @@
+res://Scenes/EnemyBase
+res://Scenes/GameUI
+res://Scenes/HealthBar
+res://Scenes/Shield
+res://assets/lasers
+res://assets/misc
+res://Scenes/BulletBase
+res://Resources
+res://Scenes/Projectile
+res://Scenes/PowerUp
+res://Scenes/Explosion
+res://Scenes/Level
+res://Scenes/UIButton
 res://

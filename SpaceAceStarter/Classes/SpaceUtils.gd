@@ -15,3 +15,11 @@ static func set_and_start_timer(t: Timer, wait: float, variance: float):
 	t.wait_time = wait + randf_range(-variance, variance)
 	t.start()
 	
+static func play_random_sound2D(player: AudioStreamPlayer2D, sounds: Array[AudioStream]) -> void:
+	print("PLAYED RANDOM SOUND FROM: ", player) 
+	if player.playing: 
+		player.stop()
+	var rand_sound = sounds.pick_random()
+	player.stream =  rand_sound
+	player.play()
+	
