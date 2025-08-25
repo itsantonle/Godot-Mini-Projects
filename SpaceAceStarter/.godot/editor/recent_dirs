@@ -1,11 +1,14 @@
+res://Scenes/WaveManager
+res://Resources
+res://Scenes/GameOverUI
 res://Scenes/EnemyBase
+res://assets/ships
 res://Scenes/GameUI
 res://Scenes/HealthBar
 res://Scenes/Shield
 res://assets/lasers
 res://assets/misc
 res://Scenes/BulletBase
-res://Resources
 res://Scenes/Projectile
 res://Scenes/PowerUp
 res://Scenes/Explosion

@@ -2,17 +2,19 @@ extends PathFollow2D
 
 class_name  EnemyBase
 
-@export var point: int = 10
+@export var points: int = 10
 @export var crash_damage: int = 10 
 @onready var booms: Node2D = $Booms
 @onready var health_bar: HealthBar = $HealthBar
+@onready var sound: AudioStreamPlayer2D = $Sound
 
-var _speed: float = 50 
+var _speed: float = 200
 
 func _process(delta: float) -> void:
-	if progress >=  0.99: 
+	progress += delta * _speed
+	if progress_ratio >=  0.99: 
 		queue_free()
-	progress_ratio += 1 * delta
+	
 	
 	
 
@@ -26,6 +28,7 @@ func die() -> void:
 	queue_free()
 
 func _on_health_bar_died() -> void:
+	ScoreManager.increment_score(points)
 	die()
 
 

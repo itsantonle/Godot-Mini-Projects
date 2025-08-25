@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cky3l2d6jexmo"]
+
+[ext_resource type="FontFile" uid="uid://b33msg5mojbvg" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_qs6b6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1r00"]
+bg_color = Color(0.890196, 0.317647, 0.403922, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+Label/colors/font_color = Color(0.995925, 0.801163, 0.556818, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 11
+Label/constants/shadow_offset_x = 4
+Label/constants/shadow_offset_y = 5
+Label/constants/shadow_outline_size = 5
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_qs6b6")
+Panel/styles/panel = SubResource("StyleBoxFlat_f1r00")

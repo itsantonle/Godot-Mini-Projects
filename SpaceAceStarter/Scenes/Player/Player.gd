@@ -71,9 +71,12 @@ func _on_area_entered(area: Area2D) -> void:
 		area.set_process(false)
 		area.queue_free()
 		
-	if area is BulletBase : 
+	elif area is BulletBase : 
 		SignalHub.emit_on_player_hit(area.get_damage())
 		area.queue_free()
+	elif area.get_parent() is EnemyBase: 
+		SignalHub.emit_on_player_hit(area.get_parent().crash_damage)
+	
 	
 	
 			

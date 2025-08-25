@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://c37yg6uj3m5vm"]
+
+[ext_resource type="Script" uid="uid://ocbeenfh7rth" path="res://Scenes/WaveManager/WaveManager.gd" id="1_631jx"]
+
+[sub_resource type="Curve2D" id="Curve2D_vp541"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 104, -137, 0, 0, 0, 0, 103, 531)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_631jx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -150, 292, 0, 0, 0, 0, 788, 147)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_bakpk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -128, 81, 0, 0, 0, 0, 780, 345)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_34nlq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -106, 166, 0, 0, 0, 0, 768, -113)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_0bcsu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 406, -102, 0, 0, 0, 0, 394, 549)
+}
+point_count = 2
+
+[node name="waveManager" type="Node2D"]
+script = ExtResource("1_631jx")
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_vp541")
+
+[node name="Path2D2" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_631jx")
+
+[node name="Path2D3" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_bakpk")
+
+[node name="Path2D4" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_34nlq")
+
+[node name="Path2D5" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_0bcsu")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
