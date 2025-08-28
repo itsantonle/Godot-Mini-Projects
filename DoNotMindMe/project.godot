@@ -23,6 +23,7 @@ GameManager="*res://Globals/GameManager.gd"
 [display]
 
 window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 
 [editor]
 
