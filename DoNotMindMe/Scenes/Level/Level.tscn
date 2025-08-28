@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dduix381kf2mu"]
+
+[ext_resource type="PackedScene" uid="uid://c21wjxirt07sd" path="res://Scenes/GameUI/GameUi.tscn" id="1_vbawi"]
+
+[node name="Level" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("1_vbawi")]
