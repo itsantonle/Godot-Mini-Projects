@@ -63,11 +63,14 @@ func update_movement() -> void:
 			
 			
 func set_label() -> void: 
-	var s:String = "FIN_NAV: %s\n" % nav_agent.is_navigation_finished()
+	var s:String = "FIN_NAV: %s\n " % nav_agent.is_navigation_finished()
+	s+= "STATE: %s\n" % EnemyState.keys()[_state]
 	s += "TG_REA: %s\n" % nav_agent.is_target_reached()
 	s+= "TG_CAN_REA: %s\n" % nav_agent.is_target_reachable()
 	s+= "TAR: %s" % nav_agent.target_position
+	
 	debug_label.text = s
+	debug_label.rotation = -rotation
 
 
 func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
