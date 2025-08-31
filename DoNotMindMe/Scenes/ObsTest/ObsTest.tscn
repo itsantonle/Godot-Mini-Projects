@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp8pvbi5jkc5w"]
+
+[ext_resource type="Script" uid="uid://ci3gfto7g03do" path="res://Scenes/ObsTest/ObsTest.gd" id="1_557af"]
+[ext_resource type="Texture2D" uid="uid://cj0jbmkurtd0e" path="res://icon.svg" id="1_n33o8"]
+
+[node name="ObsTest" type="Node2D"]
+script = ExtResource("1_557af")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_n33o8")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 45.0
+vertices = PackedVector2Array(-30, -32, 32, -33, 33, 33, -32, 32)

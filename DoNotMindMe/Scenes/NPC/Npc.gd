@@ -22,6 +22,7 @@ func update_navigation() -> void:
 		
 	var npp: Vector2 = nav_agent.get_next_path_position()
 	rotation = global_position.direction_to(npp).angle()
+	#nav_agent.velocity = transform.x * SPEED
 	velocity = transform.x * SPEED
 	move_and_slide()
 	
@@ -31,3 +32,8 @@ func set_label() -> void:
 	s+= "TG_CAN_REA: %s\n" % nav_agent.is_target_reachable()
 	s+= "TAR: %s" % nav_agent.target_position
 	debug_label.text = s
+
+
+func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity 
+	move_and_slide()
