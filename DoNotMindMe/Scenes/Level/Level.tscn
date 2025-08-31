@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://dduix381kf2mu"]
+[gd_scene load_steps=6 format=4 uid="uid://dduix381kf2mu"]
 
 [ext_resource type="PackedScene" uid="uid://c21wjxirt07sd" path="res://Scenes/GameUI/GameUi.tscn" id="1_vbawi"]
 [ext_resource type="TileSet" uid="uid://bnw1x0u5qn825" path="res://Resources/LevelTiles.tres" id="2_3hkb6"]
 [ext_resource type="PackedScene" uid="uid://8an0v52gocu1" path="res://Scenes/NPC/Npc.tscn" id="3_4dwx7"]
+[ext_resource type="PackedScene" uid="uid://cfsueh4utfr1y" path="res://Scenes/WayPoint/Waypoint.tscn" id="4_qp1lj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4dwx7"]
 vertices = PackedVector2Array(159.656, 544.977, 585, 327.953, 730.352, 282.352, 874.508, 277.656, 1000.85, 544.008, 585, 246, 742.383, 84.8672, 271.148, 79.1172, 373, 246, 272.148, 144.922, 864.523, 83.9297, 994.141, 83.0625, 373, 329.047, 146.328, 145.906)
@@ -31,6 +32,7 @@ tile_set = ExtResource("2_3hkb6")
 
 [node name="NPC" parent="." instance=ExtResource("3_4dwx7")]
 position = Vector2(220, 214)
+patrol_points = NodePath("../Path")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_4dwx7")
@@ -38,3 +40,17 @@ navigation_polygon = SubResource("NavigationPolygon_4dwx7")
 [node name="Polygon2D" type="Polygon2D" parent="NavigationRegion2D"]
 color = Color(1, 1, 1, 0.0745098)
 polygon = PackedVector2Array(383, 256, 575, 256, 575, 318, 383, 319)
+
+[node name="Path" type="Node2D" parent="."]
+
+[node name="Waypoint" parent="Path" instance=ExtResource("4_qp1lj")]
+position = Vector2(240, 357)
+
+[node name="Waypoint3" parent="Path" instance=ExtResource("4_qp1lj")]
+position = Vector2(586, 500)
+
+[node name="Waypoint2" parent="Path" instance=ExtResource("4_qp1lj")]
+position = Vector2(668, 222)
+
+[node name="Waypoint4" parent="Path" instance=ExtResource("4_qp1lj")]
+position = Vector2(465, 119)
