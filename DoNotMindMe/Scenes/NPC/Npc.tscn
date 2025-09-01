@@ -36,4 +36,7 @@ radius = 50.0
 max_speed = 150.0
 debug_enabled = true
 
+[node name="PlayerDetect" type="RayCast2D" parent="."]
+target_position = Vector2(400, 0)
+
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]

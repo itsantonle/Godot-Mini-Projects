@@ -7,12 +7,15 @@ enum  EnemyState {Patrolling, Chasing, Searching}
 
 @onready var nav_agent: NavigationAgent2D = $NavAgent
 @onready var debug_label: Label = $DebugLabel
+@onready var player_detect: RayCast2D = $PlayerDetect
+@export var field_of_view_range: float =  60.0
 
-const SPEED: float = 100.0
+const SPEED: float = 60.0
 
 var _waypoints: Array[Vector2] = []
 var _current_wp: int = 0
 var _state: EnemyState = EnemyState.Patrolling
+var _player_ref: Player
 
 
 
@@ -21,19 +24,40 @@ func _unhandled_input(event: InputEvent) -> void:
 		nav_agent.target_position = get_global_mouse_position()
 	
 func _ready() -> void:
+	_player_ref = get_tree().get_first_node_in_group(Player.GROUP_NAME)
+	if !_player_ref: 
+		queue_free()
 	create_wp()
 	
 	
 func _physics_process(delta: float) -> void:
+	detect_player()
+	process_behavior()
 	update_movement()
-	update_navigation()
+	update_raycast()
 	set_label()
 
 func create_wp() -> void: 
 	# use the get_node to get node from nodepath 
 	for child in get_node(patrol_points).get_children(): 
 		_waypoints.append(child.global_position)
-		
+
+# get calculated filed of vision
+func get_field_of_view() -> float: 
+	var dtp: Vector2 = global_position.direction_to(_player_ref.global_position)
+	# the angle towars the player from where the npc is facing
+	var atp: float = transform.x.angle_to(dtp)
+	return rad_to_deg(atp)
+
+func update_raycast() -> void: 
+	# you can get raycat to directly look at 
+	player_detect.look_at(_player_ref.global_position)
+	
+func player_is_visible() -> bool: 
+	return player_detect.get_collider() is Player
+	
+func can_see_player() -> bool: 
+	return abs(get_field_of_view()) < field_of_view_range and player_is_visible()
 	
 func navigate_wp() -> void: 
 	if _waypoints.is_empty() or !_waypoints: 
@@ -42,7 +66,7 @@ func navigate_wp() -> void:
 	_current_wp = (_current_wp + 1) % _waypoints.size()
 	
 	
-func update_navigation() -> void: 
+func update_movement() -> void: 
 	if nav_agent.is_navigation_finished(): 
 		return 
 		
@@ -55,18 +79,38 @@ func update_navigation() -> void:
 func process_patrolling() -> void: 
 	if nav_agent.is_navigation_finished(): 
 		navigate_wp()
-	
-func update_movement() -> void: 
+		
+func process_chasing() -> void: 
+	nav_agent.target_position  = _player_ref.global_position
+		
+func process_searching() -> void: 
+	if nav_agent.is_navigation_finished(): 
+		set_state(EnemyState.Patrolling)
+		
+func process_behavior() -> void: 
 	match  _state: 
 		EnemyState.Patrolling: 
 			process_patrolling()
-			
+		EnemyState.Chasing: 
+			process_chasing()
+		EnemyState.Searching: 
+			process_searching()
+
+func set_state(new_state: EnemyState) -> void: 
+	if new_state == _state: return 
+	_state = new_state
+
+func detect_player() -> void: 
+	if can_see_player(): 
+		set_state(EnemyState.Chasing)
+	elif _state == EnemyState.Chasing: 
+		set_state(EnemyState.Searching)
 			
 func set_label() -> void: 
 	var s:String = "FIN_NAV: %s\n " % nav_agent.is_navigation_finished()
-	s+= "STATE: %s\n" % EnemyState.keys()[_state]
-	s += "TG_REA: %s\n" % nav_agent.is_target_reached()
-	s+= "TG_CAN_REA: %s\n" % nav_agent.is_target_reachable()
+	s+= "STATE: %s ANGLEL %.0f:\n" % [EnemyState.keys()[_state], get_field_of_view()]
+	s += "PLAYER_VIS: %s\n" % player_is_visible()
+	s+= "CAN_SEE: %s\n" % can_see_player()
 	s+= "TAR: %s" % nav_agent.target_position
 	
 	debug_label.text = s
