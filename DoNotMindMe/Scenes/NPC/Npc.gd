@@ -3,14 +3,31 @@ extends CharacterBody2D
 enum  EnemyState {Patrolling, Chasing, Searching}
 
 @export var patrol_points:NodePath
+@export var field_of_view_range: float =  60.0
 #nodepath are the green dollar sign text, holds path to an object
 
 @onready var nav_agent: NavigationAgent2D = $NavAgent
 @onready var debug_label: Label = $DebugLabel
 @onready var player_detect: RayCast2D = $PlayerDetect
-@export var field_of_view_range: float =  60.0
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var warning: Sprite2D = $Warning
+@onready var gasp_sound: AudioStreamPlayer2D = $GaspSound
 
-const SPEED: float = 60.0
+
+
+
+const SPEED: Dictionary[EnemyState, float] = {
+	EnemyState.Patrolling : 60.0, 
+	EnemyState.Chasing: 100.0, 
+	EnemyState.Searching: 80.0, 
+}
+
+
+const FOV: Dictionary[EnemyState, float] = {
+	EnemyState.Patrolling : 60.0, 
+	EnemyState.Chasing: 120.0, 
+	EnemyState.Searching: 100.0, 
+}
 
 var _waypoints: Array[Vector2] = []
 var _current_wp: int = 0
@@ -57,7 +74,7 @@ func player_is_visible() -> bool:
 	return player_detect.get_collider() is Player
 	
 func can_see_player() -> bool: 
-	return abs(get_field_of_view()) < field_of_view_range and player_is_visible()
+	return abs(get_field_of_view()) < FOV[_state] and player_is_visible()
 	
 func navigate_wp() -> void: 
 	if _waypoints.is_empty() or !_waypoints: 
@@ -73,7 +90,7 @@ func update_movement() -> void:
 	var npp: Vector2 = nav_agent.get_next_path_position()
 	rotation = global_position.direction_to(npp).angle()
 	#nav_agent.velocity = transform.x * SPEED
-	velocity = transform.x * SPEED
+	velocity = transform.x * SPEED[_state]
 	move_and_slide()
 	
 func process_patrolling() -> void: 
@@ -98,6 +115,17 @@ func process_behavior() -> void:
 
 func set_state(new_state: EnemyState) -> void: 
 	if new_state == _state: return 
+	if _state == EnemyState.Searching: 
+		warning.hide()
+		
+	if new_state == EnemyState.Searching: 
+		warning.show()
+	elif new_state == EnemyState.Chasing: 
+		gasp_sound.play()
+		animation_player.play("alert")
+	elif new_state == EnemyState.Patrolling: 
+		animation_player.play("RESET")
+		
 	_state = new_state
 
 func detect_player() -> void: 
