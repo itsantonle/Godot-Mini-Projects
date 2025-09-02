@@ -12,10 +12,13 @@ enum  EnemyState {Patrolling, Chasing, Searching}
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var warning: Sprite2D = $Warning
 @onready var gasp_sound: AudioStreamPlayer2D = $GaspSound
+@onready var shoot_timer: Timer = $ShootTimer
+@onready var laser_sound: AudioStreamPlayer2D = $LaserSound
 
 
 
 
+const BULLET = preload("res://Scenes/Bullet/Bullet.tscn")
 const SPEED: Dictionary[EnemyState, float] = {
 	EnemyState.Patrolling : 60.0, 
 	EnemyState.Chasing: 100.0, 
@@ -96,7 +99,9 @@ func update_movement() -> void:
 func process_patrolling() -> void: 
 	if nav_agent.is_navigation_finished(): 
 		navigate_wp()
-		
+	
+
+	
 func process_chasing() -> void: 
 	nav_agent.target_position  = _player_ref.global_position
 		
@@ -148,3 +153,17 @@ func set_label() -> void:
 func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity 
 	move_and_slide()
+
+func shoot_at_player() -> void: 
+	if _state != EnemyState.Chasing: 
+		return 
+	laser_sound.play()
+	var nb = BULLET.instantiate()
+	nb.global_position = global_position
+	# add the child but not to the enemy when you want to make independet parts
+	# that doen't move according to parent
+	get_tree().current_scene.call_deferred("add_child", nb)
+	
+func _on_shoot_timer_timeout() -> void:
+	
+	shoot_at_player()
