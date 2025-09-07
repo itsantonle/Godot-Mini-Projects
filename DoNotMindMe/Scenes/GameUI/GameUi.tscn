@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://c21wjxirt07sd"]
+[gd_scene load_steps=6 format=3 uid="uid://c21wjxirt07sd"]
 
 [ext_resource type="Script" uid="uid://cn0dayhkaidt3" path="res://Scenes/GameUI/GameUi.gd" id="1_diq3n"]
 [ext_resource type="LabelSettings" uid="uid://rqw8bae54mjb" path="res://assets/lg_d_blue_32.tres" id="2_81r78"]
+[ext_resource type="FontFile" uid="uid://bgsb8rmrhb6gk" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_556m7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iq8cv"]
+font = ExtResource("3_556m7")
+font_size = 32
+font_color = Color(0.0509804, 0.862745, 0.305882, 1)
+outline_size = 3
+outline_color = Color(0.0784314, 0.0784314, 0.372549, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_556m7"]
+font = ExtResource("3_556m7")
+font_size = 50
+font_color = Color(0.931398, 0.125074, 0.771533, 1)
+outline_size = 3
+outline_color = Color(0.0784314, 0.0784314, 0.372549, 1)
 
 [node name="GameUI" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,9 +39,55 @@ grow_vertical = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 
-[node name="Label" type="Label" parent="MC"]
+[node name="ScoreLabel" type="Label" parent="MC"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "0/1000"
 label_settings = ExtResource("2_81r78")
+
+[node name="TimeLabe" type="Label" parent="MC"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "000"
+label_settings = ExtResource("2_81r78")
+
+[node name="ExitLabel" type="Label" parent="MC"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "GO TO EXIT"
+label_settings = SubResource("LabelSettings_iq8cv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.709804, 0.713726, 0.498039)
+
+[node name="GoLabel" type="Label" parent="ColorRect"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -16.5
+offset_right = 75.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_556m7")
+horizontal_alignment = 1
+vertical_alignment = 1

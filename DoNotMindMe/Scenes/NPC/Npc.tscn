@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://8an0v52gocu1"]
+[gd_scene load_steps=14 format=3 uid="uid://8an0v52gocu1"]
 
 [ext_resource type="Script" uid="uid://u65yc73rosnp" path="res://Scenes/NPC/Npc.gd" id="1_nvvju"]
 [ext_resource type="Texture2D" uid="uid://wuqtcp1myj77" path="res://assets/images/soldier1_gun.png" id="1_o5qkj"]
@@ -56,6 +56,9 @@ _data = {
 &"alert": SubResource("Animation_76es5")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ej0ap"]
+height = 42.0
+
 [node name="NPC" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
@@ -109,5 +112,12 @@ autostart = true
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_ej0ap")
 
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_ej0ap")
+debug_color = Color(0.834648, 0.317995, 0.58033, 0.42)
+
 [connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

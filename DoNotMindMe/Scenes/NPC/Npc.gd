@@ -167,3 +167,8 @@ func shoot_at_player() -> void:
 func _on_shoot_timer_timeout() -> void:
 	
 	shoot_at_player()
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body is Player: 
+		SignalHub.emit_on_player_died()
