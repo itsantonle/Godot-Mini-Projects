@@ -1,7 +1,10 @@
 # Godot-Mini-Projects
+![Godot](https://img.shields.io/badge/Godot-Engine-478CBF?style=for-the-badge&logo=godotengine&logoColor=white)
+![GDScript](https://img.shields.io/badge/GDScript-Language-blueviolet?style=for-the-badge)
+
 Godot games snippets 🎯🎮
 
-### Angry Animals 
+### 💢 Angry Animals 
 - rigidbody 2ds, staticbody2ds, a play on the overall godot physics engine
 - body collisions, simple state machine handled within the code
 - inherited scenes
@@ -10,7 +13,7 @@ Godot games snippets 🎯🎮
 <img height= "200" alt="image" src="https://github.com/user-attachments/assets/897f6b65-6bdd-4e8a-8e40-575fff6031a4" />
 <img height="200"  alt="image" src="https://github.com/user-attachments/assets/d0ffdadd-af0a-4c69-a5a4-94fc09c4fb13" />
 
-### Do Not Mind Me
+### 🫥 Do Not Mind Me
 - navigations regions, navagents, nav links
 - character movement through character body2D (both clickable and using keyboard joysticks)
 - intelligent path finding with navagent
@@ -20,7 +23,7 @@ Godot games snippets 🎯🎮
 <img  height="200" alt="image" src="https://github.com/user-attachments/assets/c325c392-1475-4326-bdb6-4c35a7e85533" />
 <img height="200" alt="image" src="https://github.com/user-attachments/assets/0be4a13f-ec98-446c-a20d-c72797936b45" />
 
-### Foxy Antics
+### 🦊 Foxy Antics
 - State machine in code and using the animation tree
 - Moving platforms with Path2D and PathFollow2D
 - Die state, freeze, camera shake effect
@@ -34,7 +37,7 @@ Godot games snippets 🎯🎮
   <img height="200" alt="image" src="https://github.com/user-attachments/assets/947bd179-972b-4559-9409-cefd8041967f" />
   <img  height="200" alt="image" src="https://github.com/user-attachments/assets/b935a2c7-79e8-452d-9ee0-80e92e0de2a9" />
 
-### Gem Catcher
+### 💎 Gem Catcher
 - Scoring systerm
 - Area2D and collisions
 - Movements with Input
@@ -43,9 +46,18 @@ Godot games snippets 🎯🎮
   <img  height="200" alt="image" src="https://github.com/user-attachments/assets/9a0ee53b-fc65-4169-a266-e41b168c50c7" />
 
 
-### Memory Madness
+### 🧩 Memory Madness
+- Generators using Godot EditorTools
+- Advanced Tweening (Parallel tweening etc)
+- All Control Nodes (all about resizing and adaptable ui display)
+- RNG Frames + RNG Pictures per fixed matrix (using filepaths)
+- Less hardcoded, more code logic for RNG mechanics
+  
+<img height="200" alt="image" src="https://github.com/user-attachments/assets/e1bb8b7b-0d56-4344-ba44-d3102b4cf45e" />
+<img  height="200" alt="image" src="https://github.com/user-attachments/assets/65da20dc-d5ea-4243-8b40-2ab674050cb7" />
 
-### Space Ace
+
+### 🚀 Space Ace
 - kinda like gem catcher but advanced spawning
 - Advanced health bar system (all enemies and player has individual health)
 - wave manager that spawns on RNG Pathfollow and Path2D
@@ -61,7 +73,7 @@ Godot games snippets 🎯🎮
 <img height="150" alt="image" src="https://github.com/user-attachments/assets/3ce076d6-c89a-487d-a39c-96dc0020dc55" />
 
 
-### Tappy Plane
+### ✈️ Tappy Plane
 - Animated sprite2d
 - parallax background layering
 - Tweens
@@ -70,4 +82,6 @@ Godot games snippets 🎯🎮
   
 <img height="250" alt="image" src="https://github.com/user-attachments/assets/bd4a0a77-13df-494f-8bc0-b863e3f9e9d3" />
 <img height="250" alt="image" src="https://github.com/user-attachments/assets/e5ebd8bc-432a-4fc9-9aec-7e3fd28909a1" />
+
+### Sokoban
 
